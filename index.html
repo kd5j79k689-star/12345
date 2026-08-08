@@ -1,1 +1,230 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<meta name="theme-color" content="#070a13">
+<title>Challenge Cash PRO 3.0</title>
+<style>
+:root{--bg:#070a13;--card:#10182aee;--card2:#131f35;--line:#273957;--txt:#f7f9ff;--muted:#91a0b8;--green:#42efa0;--gold:#ffd166;--blue:#59a9ff;--red:#ff5573;--purple:#a783ff}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;min-height:100%;background:var(--bg);color:var(--txt);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif}
+body{background:radial-gradient(circle at 50% -10%,#254a72 0,#111a2b 34%,#070a13 72%);overflow-x:hidden}
+.app{width:min(760px,100%);margin:auto;padding:calc(12px + env(safe-area-inset-top)) 14px 28px}
+.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+.brand{display:flex;gap:10px;align-items:center}.logo{width:46px;height:46px;border-radius:15px;display:grid;place-items:center;font-size:23px;background:linear-gradient(145deg,#53f5a6,#0ca85f);box-shadow:0 12px 32px #16d67b35}.brand h1{font-size:18px;margin:0}.brand small{font-size:10px;color:var(--muted)}
+.iconBtn{border:1px solid var(--line);background:#ffffff09;color:#fff;border-radius:13px;padding:10px 12px;font-size:17px}
+.screen{display:none}.screen.active{display:block}
+.heroCard{padding:28px 20px;border:1px solid #304663;border-radius:27px;background:linear-gradient(145deg,#14233aee,#09111eee);box-shadow:0 30px 90px #0009;text-align:center}
+.heroCoin{font-size:66px;filter:drop-shadow(0 10px 20px #ffd16644)}
+h2{margin:8px 0;font-size:27px}.sub{color:var(--muted);line-height:1.7;margin:0 auto 20px;max-width:500px}
+.field{width:100%;padding:14px;border-radius:15px;background:#0a1322;border:1px solid #30445f;color:#fff;text-align:center;font-size:15px;outline:none;margin-bottom:10px}
+.primary,.secondary{width:100%;border-radius:15px;padding:14px;font-weight:950;font-size:15px}.primary{border:0;background:linear-gradient(135deg,#54f5a6,#14bb70);color:#06130b;box-shadow:0 12px 30px #14d67935}.secondary{margin-top:9px;border:1px solid #30445f;background:#17253c;color:#eaf0fa}
+.note{font-size:11px;color:#7788a1;margin-top:12px}
+.profile{display:flex;align-items:center;gap:12px;padding:13px;border:1px solid var(--line);border-radius:19px;background:#10192ae8;margin-bottom:10px}
+.avatar{width:52px;height:52px;border-radius:17px;display:grid;place-items:center;font-size:27px;background:linear-gradient(145deg,#273d63,#17263e)}
+.profile b{font-size:16px}.profile small{display:block;color:var(--muted);margin-top:3px}
+.coins{margin-right:auto;text-align:center}.coins b{color:var(--gold)}.coins small{font-size:9px}
+.sectionTitle{display:flex;justify-content:space-between;align-items:center;margin:13px 2px 8px}.sectionTitle b{font-size:15px}.sectionTitle span{font-size:10px;color:var(--muted)}
+.menuGrid{display:grid;grid-template-columns:1fr 1fr;gap:9px}.menuCard{padding:16px;border-radius:18px;border:1px solid var(--line);background:#10192ae8;text-align:right}.menuCard strong{display:block;margin:5px 0 3px}.menuCard small{color:var(--muted);font-size:10px}
+.daily{display:grid;gap:8px}.task{display:grid;grid-template-columns:35px 1fr auto;gap:9px;align-items:center;padding:11px;border:1px solid var(--line);border-radius:15px;background:#10192ae8}.taskIcon{width:35px;height:35px;border-radius:11px;display:grid;place-items:center;background:#182740}.task b{font-size:12px}.task small{display:block;color:var(--muted);font-size:9px;margin-top:2px}.reward{font-weight:900;color:var(--gold);font-size:11px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:7px}.stat{background:#101a29e8;border:1px solid var(--line);border-radius:15px;text-align:center;padding:8px 4px}.stat span{display:block;color:var(--muted);font-size:9px}.stat b{font-size:17px}
+.xpbar{height:6px;background:#182439;border-radius:10px;overflow:hidden;margin:8px 0 10px}.xpbar i{display:block;height:100%;width:0;background:linear-gradient(90deg,#a783ff,#59a9ff);transition:width .3s}
+.challenge{background:linear-gradient(135deg,#111e31,#0c1625);border:1px solid var(--line);border-radius:17px;padding:10px 13px;margin-bottom:9px}.challengeRow{display:flex;justify-content:space-between;align-items:center}.challenge small{color:var(--muted);font-size:9px}.challenge strong{font-size:14px;display:block}.timer{font-size:18px!important;color:var(--gold)!important}
+.game{position:relative;height:min(65vh,560px);min-height:430px;border-radius:26px;overflow:hidden;border:1px solid #2b405d;background:radial-gradient(circle at 50% 20%,#21466a45,transparent 34%),linear-gradient(#101c2e,#07111d);box-shadow:0 24px 70px #0009;touch-action:none}.grid{position:absolute;inset:0;opacity:.16;background-image:linear-gradient(#fff1 1px,transparent 1px),linear-gradient(90deg,#fff1 1px,transparent 1px);background-size:32px 32px}.lane{position:absolute;inset:10px;border:1px dashed #ffffff10;border-radius:20px}.center{position:absolute;inset:0;display:grid;place-items:center;z-index:50}.panel{width:min(91%,460px);padding:25px 19px;text-align:center;border-radius:25px;background:#09101dec;border:1px solid #30435f;backdrop-filter:blur(15px);box-shadow:0 30px 90px #000a}.panel h2{margin:4px 0 8px}.panel p{color:var(--muted);line-height:1.7;margin:0 0 18px}.hero{font-size:52px}.hidden{display:none!important}
+.target{position:absolute;z-index:10;display:grid;place-items:center;user-select:none;cursor:pointer;will-change:transform,left,top}.coin{width:68px;height:68px;border-radius:50%;font-size:28px;font-weight:900;background:radial-gradient(circle at 35% 28%,#fff5b7,#ffd166 50%,#d79511);border:3px solid #ffe69a;color:#795400;box-shadow:0 9px 27px #ffd16655}.red{background:radial-gradient(circle at 35% 28%,#ffb1bf,#ff5573 55%,#bc2746);border-color:#ffacbb;color:#fff}.blue{background:radial-gradient(circle at 35% 28%,#e0f1ff,#55a7ff 52%,#246cc1);border-color:#c4e5ff;color:#fff}.small{width:48px;height:48px;font-size:20px}.textTarget{padding:12px 17px;border-radius:14px;background:#172942;border:2px solid #4e6d96;font-size:21px;font-weight:900}.float{position:absolute;z-index:30;font-weight:1000;font-size:20px;pointer-events:none;animation:floatUp .65s forwards;text-shadow:0 2px 8px #000}.notice{position:absolute;z-index:60;top:18px;left:50%;transform:translate(-50%,-15px);opacity:0;padding:10px 16px;border:1px solid #3c5575;border-radius:14px;background:#091425f2;white-space:nowrap;font-weight:900;transition:.25s}.notice.show{opacity:1;transform:translate(-50%,0)}.memory{position:absolute;inset:0;z-index:40;display:grid;place-items:center;background:#050b14a8}.memoryBox{width:min(88%,360px);padding:24px;border-radius:22px;background:#0e1929;border:1px solid #344b69;text-align:center}.memoryShape{font-size:66px;margin:12px}.choices{display:grid;grid-template-columns:1fr 1fr;gap:9px}.choice{padding:14px;border-radius:14px;border:1px solid #304866;background:#17263d;color:white;font-size:26px}
+.results{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:14px 0}.resultBox{padding:11px;border-radius:14px;background:#101c2d;border:1px solid var(--line)}.resultBox small{display:block;color:var(--muted);font-size:10px}.resultBox b{font-size:19px}
+.bottomNav{position:sticky;bottom:8px;z-index:80;display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-top:12px;padding:7px;border:1px solid #2b3e59;border-radius:19px;background:#09111de8;backdrop-filter:blur(14px)}.navBtn{border:0;background:transparent;color:#7f91aa;padding:8px 4px;border-radius:13px;font-size:10px}.navBtn b{display:block;font-size:18px;margin-bottom:2px}.navBtn.active{background:#16253a;color:#fff}
+.toast{position:fixed;z-index:100;left:50%;bottom:95px;transform:translate(-50%,20px);opacity:0;background:#101b2deF;border:1px solid #3c5575;padding:11px 15px;border-radius:14px;font-size:12px;font-weight:900;transition:.25s}.toast.show{opacity:1;transform:translate(-50%,0)}
+@keyframes floatUp{to{transform:translateY(-48px);opacity:0}}@media(max-width:430px){.stats{grid-template-columns:1fr 1fr}.game{min-height:440px}}
 
+/* PRO 3.5 */
+body:before{content:"";position:fixed;inset:0;pointer-events:none;background:radial-gradient(circle at 15% 30%,#8b6cff13,transparent 28%),radial-gradient(circle at 85% 70%,#00e5a510,transparent 28%);z-index:-1}
+.rank{display:flex;align-items:center;gap:9px;padding:11px 13px;margin-top:9px;border:1px solid var(--line);border-radius:16px;background:#10192ae8}.rankIcon{font-size:22px}.rank b{font-size:12px}.rank small{display:block;color:var(--muted);font-size:9px}.streak{margin-right:auto;color:#ff8b4d;font-weight:900}
+.modal{position:fixed;inset:0;z-index:200;display:grid;place-items:center;background:#030711b8;backdrop-filter:blur(8px);padding:20px}.modalBox{width:min(94%,420px);background:#0d1728;border:1px solid #344a68;border-radius:24px;padding:22px;box-shadow:0 30px 100px #000}.modalBox h3{margin:0 0 15px}.settingRow{display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid #ffffff0b}.switch{width:48px;height:27px;border-radius:30px;background:#26364f;padding:3px;border:0}.switch i{display:block;width:21px;height:21px;border-radius:50%;background:#8ea0ba;transition:.2s}.switch.on{background:#16b96f}.switch.on i{margin-right:21px;background:#fff}
+.countdown{position:absolute;inset:0;z-index:100;display:grid;place-items:center;background:#050a14aa;backdrop-filter:blur(4px)}.countdown b{font-size:100px;color:#fff;text-shadow:0 0 35px #59a9ff;animation:pop .7s ease}
+.confetti{position:fixed;z-index:250;width:7px;height:12px;top:-20px;animation:fall 1.7s linear forwards}
+@keyframes pop{0%{transform:scale(.3);opacity:0}60%{transform:scale(1.1);opacity:1}100%{transform:scale(1);opacity:1}}
+@keyframes fall{to{transform:translate3d(var(--x),110vh,0) rotate(720deg);opacity:0}}
+</style>
+</head>
+<body>
+<div class="app">
+
+<div id="login" class="screen active">
+  <div class="heroCard">
+    <div class="heroCoin">💵</div>
+    <h2>Challenge Cash</h2>
+    <p class="sub">PRO 3.0 — تحديات سريعة، مستويات، مهام يومية وجوائز افتراضية.</p>
+    <input id="nameInput" class="field" maxlength="18" placeholder="اكتب اسم اللاعب">
+    <button class="primary" id="loginBtn">دخول اللعبة 🚀</button>
+    <div class="note">بيانات النسخة التجريبية تُحفظ على جهازك فقط.</div>
+  </div>
+</div>
+
+<div id="home" class="screen">
+  <div class="profile">
+    <div class="avatar">😎</div>
+    <div><b id="playerName">Player</b><small>المستوى <span id="homeLevel">1</span> • XP <span id="homeXP">0</span>/100</small></div>
+    <div class="coins">🪙 <b id="coins">0</b><small>عملات افتراضية</small></div>
+  </div>
+
+  <div class="sectionTitle"><b>ابدأ اللعب</b><span>10 تحديات • 60 ثانية</span></div>
+  <div class="menuGrid">
+    <button class="menuCard" id="playBtn"><span>🎮</span><strong>البطولة</strong><small>10 تحديات مختلفة</small></button>
+    <button class="menuCard" id="profileBtn"><span>👤</span><strong>البروفايل</strong><small>إحصائياتك وأفضل نتيجة</small></button>
+  </div>
+
+  <div class="sectionTitle"><b>🎯 المهام اليومية</b><span id="dailyProgress">0/3</span></div>
+  <div class="daily" id="daily"></div>
+
+  <div class="sectionTitle"><b>🏆 إنجازاتك</b><span>محفوظة على الجهاز</span></div>
+  <div class="menuGrid">
+    <div class="menuCard"><span>🏆</span><strong>أفضل نتيجة</strong><small id="bestHome">0</small></div>
+    <div class="menuCard"><span>🔥</span><strong>أفضل Combo</strong><small id="comboHome">x1</small></div>
+  </div>
+</div>
+
+<div id="profileScreen" class="screen">
+  <div class="profile"><div class="avatar">😎</div><div><b id="profileName">Player</b><small>عضو Challenge Cash</small></div></div>
+  <div class="stats">
+    <div class="stat"><span>أفضل نتيجة</span><b id="pBest">0</b></div>
+    <div class="stat"><span>أفضل Combo</span><b id="pCombo">x1</b></div>
+    <div class="stat"><span>بطولات</span><b id="pRuns">0</b></div>
+    <div class="stat"><span>عملات</span><b id="pCoins">0</b></div>
+  </div>
+  <div class="sectionTitle"><b>🎁 الجوائز الافتراضية</b><span>للتجربة</span></div>
+  <div class="menuGrid">
+    <div class="menuCard"><span>🥉</span><strong>مبتدئ</strong><small>أكمل أول بطولة</small></div>
+    <div class="menuCard"><span>🥇</span><strong>سريع</strong><small>حقق Combo x10</small></div>
+    <div class="menuCard"><span>💎</span><strong>ماسي</strong><small>حقق 5000 نقطة</small></div>
+    <div class="menuCard"><span>👑</span><strong>بطل</strong><small>أكمل 10 تحديات</small></div>
+  </div>
+</div>
+
+<div id="gameScreen" class="screen">
+  <div class="stats">
+    <div class="stat"><span>النقاط</span><b id="score">0</b></div>
+    <div class="stat"><span>المضاعف</span><b id="combo">x1</b></div>
+    <div class="stat"><span>المستوى</span><b id="level">1</b></div>
+    <div class="stat"><span>الدقة</span><b id="accuracy">100%</b></div>
+  </div>
+  <div class="xpbar"><i id="xp"></i></div>
+  <div class="challenge"><div class="challengeRow"><div><small>التحدي <span id="round">1</span>/10</small><strong id="challengeName">—</strong></div><b class="timer" id="time">60</b></div></div>
+  <main class="game" id="game"><div class="countdown hidden" id="countdown"><b id="countNum">3</b></div><div class="grid"></div><div class="lane"></div><div class="notice" id="notice"></div>
+    <div class="center hidden" id="finish"><div class="panel"><div class="hero">👑</div><h2>انتهت البطولة</h2><div class="results">
+      <div class="resultBox"><small>النتيجة</small><b id="finalScore">0</b></div>
+      <div class="resultBox"><small>أفضل كومبو</small><b id="finalCombo">x1</b></div>
+      <div class="resultBox"><small>الدقة</small><b id="finalAccuracy">0%</b></div>
+      <div class="resultBox"><small>عملات افتراضية</small><b id="finalCoins">0</b></div>
+    </div><button class="primary" id="again">العب من جديد</button><button class="secondary" id="homeBtn">العودة للرئيسية</button></div></div>
+  </main>
+</div>
+
+<div id="toast" class="toast"></div>
+
+<div id="settingsModal" class="modal hidden">
+<div class="modalBox">
+<h3>⚙️ الإعدادات</h3>
+<div class="settingRow"><span>🔊 الأصوات</span><button class="switch on" id="soundSwitch"><i></i></button></div>
+<div class="settingRow"><span>✨ المؤثرات</span><button class="switch on" id="fxSwitch"><i></i></button></div>
+<div class="settingRow"><span>👤 تغيير الاسم</span><button class="secondary" id="renameBtn" style="width:auto;margin:0;padding:8px 12px">تغيير</button></div>
+<button class="primary" id="closeSettings" style="margin-top:14px">تم</button>
+</div></div><div class="bottomNav">
+  <button class="navBtn active" data-screen="home"><b>🏠</b>الرئيسية</button>
+  <button class="navBtn" data-screen="gameScreen"><b>🎮</b>لعب</button>
+  <button class="navBtn" data-screen="profileScreen"><b>👤</b>بروفايل</button>
+</div>
+</div>
+
+<script>
+/* PRO 3.0 shell + tested 10-challenge engine */
+const STORE="CC_PRO3";
+let data=JSON.parse(localStorage.getItem(STORE)||'{"name":"","coins":0,"runs":0,"best":0,"bestCombo":1,"xp":0,"level":1,"dailyDate":"","daily":{play:0,score:0,combo:0}}');
+const $=id=>document.getElementById(id);
+data.settings=data.settings||{sound:true,fx:true};data.streak=data.streak||0;data.lastPlay=data.lastPlay||"";
+function persist(){localStorage.setItem(STORE,JSON.stringify(data))}
+function confetti(){if(!data.settings.fx)return;let c=["#42efa0","#ffd166","#59a9ff","#a783ff","#ff5573"];for(let i=0;i<34;i++){let e=document.createElement("i");e.className="confetti";e.style.left=Math.random()*100+"vw";e.style.background=c[i%c.length];e.style.setProperty("--x",(Math.random()*240-120)+"px");e.style.animationDelay=Math.random()*.35+"s";document.body.appendChild(e);setTimeout(()=>e.remove(),2200)}}
+
+const screens=["login","home","profileScreen","gameScreen"];
+let audioCtx=null;
+function save(){localStorage.setItem(STORE,JSON.stringify(data))}
+function sound(freq=520,dur=.06,type="sine"){if(data.settings&&!data.settings.sound)return;try{audioCtx=audioCtx||new (window.AudioContext||window.webkitAudioContext)();let o=audioCtx.createOscillator(),g=audioCtx.createGain();o.type=type;o.frequency.value=freq;g.gain.setValueAtTime(.035,audioCtx.currentTime);g.gain.exponentialRampToValueAtTime(.001,audioCtx.currentTime+dur);o.connect(g);g.connect(audioCtx.destination);o.start();o.stop(audioCtx.currentTime+dur)}catch(e){}}
+function toast(t){$("toast").textContent=t;$("toast").classList.add("show");setTimeout(()=>$("toast").classList.remove("show"),1500)}
+function show(id){screens.forEach(x=>$(x).classList.remove("active"));$(id).classList.add("active");document.querySelectorAll(".navBtn").forEach(b=>b.classList.toggle("active",b.dataset.screen===id));if(id==="home")renderHome();if(id==="profileScreen")renderProfile()}
+function today(){return new Date().toISOString().slice(0,10)}
+function resetDaily(){if(data.dailyDate!==today()){data.dailyDate=today();data.daily={play:0,score:0,combo:0};save()}}
+function renderDaily(){resetDaily();let tasks=[["🎮","العب بطولة","أكمل بطولة واحدة","play",1,100],["⭐","اجمع 1000 نقطة","حقق 1000 نقطة في بطولة","score",1000,150],["🔥","Combo قوي","حقق Combo x5","combo",5,200]];$("daily").innerHTML=tasks.map(t=>{let v=data.daily[t[3]]||0,done=v>=t[4];return `<div class="task"><div class="taskIcon">${t[0]}</div><div><b>${t[1]}</b><small>${done?"✅ مكتملة":t[2]+" • "+v+"/"+t[4]}</small></div><div class="reward">+${t[5]} 🪙</div></div>`}).join("");$("dailyProgress").textContent=(tasks.filter(t=>(data.daily[t[3]]||0)>=t[4]).length)+"/3"}
+function renderHome(){$("playerName").textContent=data.name||"Player";let r=data.best>=5000?"👑 أسطورة":data.best>=3000?"💎 محترف":data.best>=1500?"🥇 متقدم":"🥉 مبتدئ";$("rankName").textContent=r;$("rankDesc").textContent=data.best>=5000?"أداء أسطوري":data.best>=3000?"نتائج قوية":"استمر وطور نتيجتك";$("streak").textContent=data.streak||0;$("homeLevel").textContent=data.level;$("homeXP").textContent=data.xp;$("coins").textContent=data.coins;$("bestHome").textContent=data.best;$("comboHome").textContent="x"+data.bestCombo;renderDaily()}
+function renderProfile(){$("profileName").textContent=data.name||"Player";$("pBest").textContent=data.best;$("pCombo").textContent="x"+data.bestCombo;$("pRuns").textContent=data.runs;$("pCoins").textContent=data.coins}
+$("loginBtn").onclick=()=>{let n=$("nameInput").value.trim()||"Player";data.name=n;save();sound(700,.1);show("home")}
+$("playBtn").onclick=()=>{show("gameScreen");startWithCountdown()}
+$("profileBtn").onclick=()=>show("profileScreen")
+document.querySelectorAll(".navBtn").forEach(b=>b.onclick=()=>{if(b.dataset.screen==="gameScreen"){show("gameScreen");if(!playing)startWithCountdown()}else show(b.dataset.screen)})
+</script>
+
+const $=id=>document.getElementById(id),G=$("game");
+const C=[
+["صيد الذهب 🟡","اضغط الذهب وتجنب الأحمر"],
+["الهدف الأزرق 🔵","الأزرق فقط يعطي نقاطاً كبيرة"],
+["سرعة البرق ⚡","هدف صغير وسريع"],
+["اختبار التركيز 🎯","الأحمر أكثر من المعتاد"],
+["نجمة المكافأة ⭐","اجمع النجوم عالية القيمة"],
+["الرقم الصحيح 🔢","اضغط الرقم المطلوب"],
+["الذاكرة 🧠","تذكر الشكل ثم اختره"],
+["الترتيب 1-2-3 🔢","اضغط الأرقام بالترتيب"],
+["الهدف المتحرك 🎯","أصِب الهدف قبل أن يهرب"],
+["كنز النهاية 💎","اجمع الكنوز وتجنب القنابل"]
+];
+let score=0,time=60,round=1,mode=0,combo=1,bestCombo=1,hits=0,miss=0,level=1,xp=0,timer=null,spawn=null,playing=false,memoryLock=false,order=1;
+let best=Number(data.best||0),savedXP=Number(data.xp||0);xp=savedXP;
+$("score").textContent=0;$("combo").textContent="x1";$("level").textContent=1;$("accuracy").textContent="100%";
+
+function clearObjects(){G.querySelectorAll(".target,.float,.comboPop,.memory").forEach(e=>e.remove());clearTimeout(spawn)}
+function setChallenge(){mode=round-1;$("round").textContent=round;$("challengeName").textContent=C[mode][0]+" — "+C[mode][1]}
+function updateUI(){ $("score").textContent=score; $("combo").textContent="x"+combo; $("level").textContent=level; $("accuracy").textContent=(hits+miss?Math.round(hits/(hits+miss)*100):100)+"%"; $("xp").style.width=(xp%100)+"%"; if(score>best){best=score;data.best=best;save()} }
+function addXP(n){xp+=n;while(xp>=100){xp-=100;level++;notice("⭐ Level Up! المستوى "+level)}data.xp=xp;data.level=level;save();updateUI()}
+function result(ok,base,el){
+let pts=ok?base*combo:-Math.abs(base);if(ok){hits++;combo=Math.min(10,combo+1);bestCombo=Math.max(bestCombo,combo);sound(720,.045)}else{miss++;combo=1;sound(180,.08,"square")}
+score=Math.max(0,score+pts);addXP(ok?Math.max(1,Math.round(base/2)):0);
+if(el) pop(el,pts,ok?"#50f4a5":"#ff5573");updateUI();
+}
+function pop(el,n,color){let r=el.getBoundingClientRect(),q=G.getBoundingClientRect(),f=document.createElement("div");f.className="float";f.textContent=(n>0?"+":"")+n;f.style.color=color;f.style.left=(r.left-q.left+12)+"px";f.style.top=(r.top-q.top)+"px";G.appendChild(f);setTimeout(()=>f.remove(),700)}
+function note(t){$("notice").textContent=t;$("notice").classList.add("show");setTimeout(()=>$("notice").classList.remove("show"),1500)}
+function position(el){let w=G.clientWidth,h=G.clientHeight;el.style.left=(14+Math.random()*Math.max(5,w-108))+"px";el.style.top=(48+Math.random()*Math.max(5,h-128))+"px"}
+function target(cls="coin",txt="$"){let e=document.createElement("div");e.className="target "+cls;e.textContent=txt;position(e);G.appendChild(e);return e}
+
+function ch1(){function add(){if(!playing)return;let bad=Math.random()<.22,e=target("coin"+(bad?" red":""),bad?"✕":"$");e.onclick=()=>{if(!e.isConnected)return;result(!bad,bad?20:10,e);e.remove()};setTimeout(()=>e.remove(),1200);spawn=setTimeout(add,450+Math.random()*300)}add()}
+function ch2(){function add(){if(!playing)return;let blue=Math.random()<.52,e=target("coin "+(blue?"blue":""),blue?"★":"$");e.onclick=()=>{if(!e.isConnected)return;result(blue,blue?20:10,e);e.remove()};setTimeout(()=>e.remove(),1000);spawn=setTimeout(add,420+Math.random()*260)}add()}
+function ch3(){function add(){if(!playing)return;let e=target("coin small","⚡");e.onclick=()=>{if(!e.isConnected)return;result(true,15,e);e.remove()};setTimeout(()=>e.remove(),520);spawn=setTimeout(add,220+Math.random()*170)}add()}
+function ch4(){function add(){if(!playing)return;let bad=Math.random()<.52,e=target("coin"+(bad?" red":""),bad?"✕":"$");e.onclick=()=>{if(!e.isConnected)return;result(!bad,bad?30:12,e);e.remove()};setTimeout(()=>e.remove(),950);spawn=setTimeout(add,330+Math.random()*220)}add()}
+function ch5(){function add(){if(!playing)return;let e=target("coin","★");e.onclick=()=>{if(!e.isConnected)return;result(true,25,e);e.remove()};setTimeout(()=>e.remove(),900);spawn=setTimeout(add,400+Math.random()*250)}add()}
+function ch6(){let wanted=Math.floor(Math.random()*9)+1;$("challengeName").textContent="الرقم الصحيح 🔢 — اضغط "+wanted;function add(){if(!playing)return;let n=Math.floor(Math.random()*9)+1,e=target("textTarget",n);e.onclick=()=>{if(!e.isConnected)return;result(n===wanted,20,e);e.remove()};setTimeout(()=>e.remove(),950);spawn=setTimeout(add,430+Math.random()*250)}add()}
+function ch7(){let vals=["🔴","🔵","⭐","🟢"],ans=vals[Math.floor(Math.random()*4)],box=document.createElement("div");box.className="memory";box.innerHTML='<div class="memoryBox"><small>تذكّر الشكل</small><div class="memoryShape">'+ans+'</div></div>';G.appendChild(box);setTimeout(()=>{box.remove();let m=document.createElement("div");m.className="memory";m.innerHTML='<div class="memoryBox"><h3>أي شكل رأيت؟</h3><div class="choices">'+vals.map(v=>'<button class="choice">'+v+'</button>').join("")+'</div></div>';G.appendChild(m);m.querySelectorAll(".choice").forEach(b=>b.onclick=()=>{let ok=b.textContent===ans;result(ok,30);m.remove();note(ok?"🧠 ممتاز!":"❌ تذكّر أكثر");if(playing&&mode===6)ch7()})},1000)}
+function ch8(){order=1;function add(){if(!playing)return;let n=Math.floor(Math.random()*3)+1,e=target("textTarget",n);e.onclick=()=>{if(!e.isConnected)return;if(n===order){result(true,10,e);order++;if(order===4){score+=30;addXP(15);order=1;note("🔥 سلسلة 1-2-3 +30")}}else{result(false,10,e);order=1}e.remove()};setTimeout(()=>e.remove(),950);spawn=setTimeout(add,430+Math.random()*240)}add()}
+function ch9(){let e=target("coin blue","🎯"),x=15,y=65,dx=2.7,dy=2.1;function move(){if(!playing||mode!==8){e.remove();return}x+=dx;y+=dy;let w=G.clientWidth-85,h=G.clientHeight-125;if(x<10||x>w)dx=-dx;if(y<45||y>h)dy=-dy;e.style.left=x+"px";e.style.top=y+"px";requestAnimationFrame(move)}e.onclick=()=>{if(!e.isConnected)return;result(true,35,e);e.remove();setTimeout(()=>playing&&mode===8&&ch9(),350)};move()}
+function ch10(){function add(){if(!playing)return;let bomb=Math.random()<.25,e=target("coin"+(bomb?" red":""),bomb?"💣":"💎");e.onclick=()=>{if(!e.isConnected)return;result(!bomb,bomb?35:20,e);e.remove()};setTimeout(()=>e.remove(),1000);spawn=setTimeout(add,350+Math.random()*230)}add()}
+const games=[ch1,ch2,ch3,ch4,ch5,ch6,ch7,ch8,ch9,ch10];
+
+function start(){score=0;round=1;combo=1;bestCombo=1;hits=0;miss=0;level=1;playing=true;xp=Number(data.xp||0);$("finish").classList.add("hidden");runRound()}
+function runRound(){clearObjects();setChallenge();time=60;$("time").textContent=60;$("xp").style.width=(xp%100)+"%";note("🎮 "+C[mode][0]);games[mode]();clearInterval(timer);timer=setInterval(()=>{time--;$("time").textContent=time;if(time<=0){clearInterval(timer);clearTimeout(spawn);clearObjects();if(round>=10)finish();else{round++;runRound()}}},1000)}
+function finish(){
+playing=false;clearObjects();clearInterval(timer);
+let accuracy=(hits+miss?Math.round(hits/(hits+miss)*100):100);
+let earned=Math.max(10,Math.floor(score/100));
+data.runs=(data.runs||0)+1;
+let today=new Date().toISOString().slice(0,10);
+if(data.lastPlay!==today){data.streak=(data.streak||0)+1;data.lastPlay=today}
+data.coins=(data.coins||0)+earned; data.best=Math.max(data.best||0,score); data.bestCombo=Math.max(data.bestCombo||1,bestCombo);
+resetDaily();data.daily.play=(data.daily.play||0)+1;data.daily.score=Math.max(data.daily.score||0,score);data.daily.combo=Math.max(data.daily.combo||0,bestCombo);
+confetti();save();
+$("finalScore").textContent=score;$("finalCombo").textContent="x"+bestCombo;$("finalAccuracy").textContent=accuracy+"%";$("finalCoins").textContent=earned;
+$("finish").classList.remove("hidden");sound(880,.18,"triangle");renderHome();
+}
+$("again").onclick=start;
+$("homeBtn").onclick=()=>{finishStateCleanup();show("home")};
+function finishStateCleanup(){playing=false;clearInterval(timer);clearTimeout(spawn);clearObjects()}
+
+setChallenge();updateUI();
+
+</script></body></html>
