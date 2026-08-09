@@ -1,823 +1,1114 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
+
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-<title>Challenge Cash PRO 3.5</title>
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<title>Challenge Cash PRO 4.1</title>
 
 <style>
-*{
-  box-sizing:border-box;
-  -webkit-tap-highlight-color:transparent;
-}
 
 :root{
-  --bg:#070a12;
-  --card:#101624;
-  --card2:#151d2e;
-  --blue:#4f8cff;
-  --cyan:#27d9ff;
-  --green:#28d17c;
-  --yellow:#ffc857;
-  --red:#ff5570;
-  --text:#f7f9ff;
-  --muted:#8d98ad;
-  --border:rgba(255,255,255,.09);
+--bg:#060a12;
+--card:#101827;
+--card2:#0c1421;
+--line:#26354d;
+--text:#ffffff;
+--muted:#8b98ac;
+--blue:#4d8dff;
+--purple:#785cff;
+--gold:#ffc94d;
+--green:#35d07f;
+--red:#ff5968;
+}
+
+*{
+box-sizing:border-box;
+-webkit-tap-highlight-color:transparent;
+}
+
+html,body{
+margin:0;
+padding:0;
+width:100%;
+min-height:100%;
+background:var(--bg);
+color:var(--text);
+font-family:
+-apple-system,
+BlinkMacSystemFont,
+"Segoe UI",
+Arial,
+sans-serif;
+touch-action:manipulation;
 }
 
 body{
-  margin:0;
-  min-height:100vh;
-  background:
-    radial-gradient(circle at 20% 0%,rgba(79,140,255,.18),transparent 35%),
-    radial-gradient(circle at 100% 30%,rgba(39,217,255,.10),transparent 30%),
-    var(--bg);
-  color:var(--text);
-  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
-  overflow-x:hidden;
+overscroll-behavior:none;
 }
 
-button,input{
-  font:inherit;
+button,
+input{
+font-family:inherit;
 }
 
 button{
-  border:0;
-  cursor:pointer;
+touch-action:manipulation;
+user-select:none;
+-webkit-user-select:none;
+cursor:pointer;
 }
 
 .app{
-  width:100%;
-  max-width:520px;
-  min-height:100vh;
-  margin:auto;
-  padding:18px 15px 35px;
+width:100%;
+max-width:520px;
+margin:auto;
+min-height:100vh;
+background:
+radial-gradient(
+circle at 80% 0%,
+#275bc433,
+transparent 35%
+);
 }
 
-/* LOGIN */
+.screen{
+display:none;
+min-height:100vh;
+padding:20px 16px 105px;
+}
 
-#login{
-  min-height:100vh;
-  display:flex;
-  align-items:center;
-  justify-content:center;
+.screen.active{
+display:block;
+}
+
+.login{
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
 }
 
 .loginBox{
-  width:100%;
-  background:linear-gradient(145deg,#111a2a,#0d1320);
-  border:1px solid var(--border);
-  border-radius:30px;
-  padding:30px 22px;
-  box-shadow:0 25px 80px rgba(0,0,0,.45);
-  text-align:center;
+width:100%;
+max-width:420px;
 }
 
 .logo{
-  width:90px;
-  height:90px;
-  margin:0 auto 18px;
-  border-radius:28px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:45px;
-  background:linear-gradient(135deg,#4f8cff,#27d9ff);
-  box-shadow:0 15px 45px rgba(79,140,255,.35);
+width:100px;
+height:100px;
+margin:0 auto 18px;
+display:grid;
+place-items:center;
+border-radius:30px;
+font-size:48px;
+background:
+linear-gradient(
+135deg,
+#4d8dff,
+#795cff
+);
+box-shadow:
+0 20px 55px #4d8dff44;
 }
 
-.loginBox h1{
-  margin:0;
-  font-size:32px;
+h1{
+font-size:32px;
+margin:0 0 6px;
 }
 
-.loginBox h1 span{
-  color:var(--cyan);
+.subtitle{
+color:var(--muted);
+line-height:1.6;
 }
 
-.loginBox p{
-  color:var(--muted);
-  margin:10px 0 25px;
+.input{
+width:100%;
+height:58px;
+padding:0 18px;
+margin:20px 0 10px;
+border-radius:17px;
+border:1px solid var(--line);
+outline:none;
+background:#0b121e;
+color:white;
+font-size:17px;
+text-align:right;
 }
 
-.nameInput{
-  width:100%;
-  padding:16px;
-  border-radius:16px;
-  background:#080d17;
-  color:white;
-  border:1px solid var(--border);
-  outline:none;
-  text-align:center;
+.input:focus{
+border-color:var(--blue);
+box-shadow:0 0 0 3px #4d8dff18;
 }
 
-.mainBtn{
-  width:100%;
-  margin-top:14px;
-  padding:16px;
-  border-radius:16px;
-  color:white;
-  font-weight:800;
-  background:linear-gradient(135deg,#4f8cff,#6c5cff);
-  box-shadow:0 10px 30px rgba(79,140,255,.25);
+.primary{
+width:100%;
+height:58px;
+border:0;
+border-radius:17px;
+background:
+linear-gradient(
+135deg,
+var(--blue),
+var(--purple)
+);
+color:white;
+font-size:17px;
+font-weight:900;
+box-shadow:
+0 12px 30px #4d8dff2e;
 }
 
-.mainBtn:active{
-  transform:scale(.98);
+.primary:active{
+transform:scale(.98);
 }
-
-/* HEADER */
 
 .top{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  margin-bottom:15px;
+display:flex;
+align-items:center;
+justify-content:space-between;
+margin-bottom:16px;
 }
 
-.profile{
-  display:flex;
-  align-items:center;
-  gap:11px;
+.brand{
+font-size:21px;
+font-weight:950;
+}
+
+.coinBadge{
+padding:9px 13px;
+border-radius:14px;
+background:#151f31;
+border:1px solid var(--line);
+color:var(--gold);
+font-weight:900;
+}
+
+.card{
+background:
+linear-gradient(
+180deg,
+#141e2e,
+#0c1421
+);
+border:1px solid var(--line);
+border-radius:22px;
+padding:17px;
+margin-bottom:13px;
+box-shadow:
+0 12px 30px #00000018;
+}
+
+.profileHead{
+display:flex;
+align-items:center;
+gap:13px;
 }
 
 .avatar{
-  width:50px;
-  height:50px;
-  border-radius:17px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  background:linear-gradient(135deg,#4f8cff,#7b61ff);
-  font-size:23px;
-  font-weight:900;
+width:65px;
+height:65px;
+border-radius:20px;
+display:grid;
+place-items:center;
+font-size:31px;
+background:
+linear-gradient(
+135deg,
+#315da8,
+#815cf0
+);
 }
 
-.profileName{
-  font-weight:800;
+.playerName{
+font-size:21px;
+font-weight:950;
 }
 
-.rank{
-  color:var(--cyan);
-  font-size:12px;
-  margin-top:3px;
+.levelText{
+color:#58d8f2;
+font-size:13px;
+margin-top:4px;
 }
 
-.iconBtn{
-  width:45px;
-  height:45px;
-  border-radius:15px;
-  background:var(--card);
-  border:1px solid var(--border);
-  color:white;
-  font-size:20px;
+.progress{
+height:8px;
+margin-top:12px;
+background:#080d15;
+border-radius:99px;
+overflow:hidden;
 }
 
-/* BALANCE */
-
-.balance{
-  background:
-    linear-gradient(135deg,rgba(79,140,255,.22),rgba(39,217,255,.05)),
-    var(--card);
-  border:1px solid rgba(79,140,255,.25);
-  border-radius:25px;
-  padding:20px;
-  margin-bottom:14px;
-  position:relative;
-  overflow:hidden;
+.progressFill{
+height:100%;
+width:0%;
+background:
+linear-gradient(
+90deg,
+#20d3ee,
+#4d8dff
+);
+border-radius:99px;
+transition:width .25s;
 }
 
-.balance:after{
-  content:"";
-  position:absolute;
-  width:150px;
-  height:150px;
-  border-radius:50%;
-  background:rgba(39,217,255,.12);
-  left:-60px;
-  top:-80px;
-}
-
-.balanceLabel{
-  color:var(--muted);
-  font-size:13px;
-}
-
-.money{
-  font-size:38px;
-  font-weight:900;
-  margin:5px 0;
-}
-
-.money span{
-  color:var(--green);
-}
-
-.xpBar{
-  height:7px;
-  border-radius:10px;
-  background:#070b13;
-  overflow:hidden;
-  margin-top:12px;
-}
-
-.xpFill{
-  height:100%;
-  width:0%;
-  background:linear-gradient(90deg,#4f8cff,#27d9ff);
-  transition:.5s;
-}
-
-/* CARDS */
-
-.grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:12px;
-  margin-bottom:15px;
+.stats{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:8px;
+margin-top:14px;
 }
 
 .stat{
-  background:var(--card);
-  border:1px solid var(--border);
-  border-radius:20px;
-  padding:16px;
+padding:12px 5px;
+text-align:center;
+border-radius:15px;
+background:#0a111d;
+border:1px solid var(--line);
 }
 
-.statIcon{
-  font-size:23px;
+.stat b{
+display:block;
+font-size:19px;
 }
 
-.statValue{
-  font-size:23px;
-  font-weight:900;
-  margin-top:5px;
+.stat span{
+font-size:11px;
+color:var(--muted);
 }
 
-.statLabel{
-  color:var(--muted);
-  font-size:12px;
+.sectionTitle{
+font-size:18px;
+font-weight:950;
+margin:22px 3px 10px;
 }
 
-/* GAME */
-
-.game{
-  background:linear-gradient(145deg,#111827,#0c1220);
-  border:1px solid var(--border);
-  border-radius:27px;
-  padding:18px;
-  margin-top:15px;
+.challengeCard{
+min-height:440px;
+display:flex;
+flex-direction:column;
+justify-content:space-between;
 }
 
-.gameTop{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
+.timerCircle{
+text-align:center;
+margin-bottom:5px;
 }
 
-.challengeNo{
-  color:var(--muted);
-  font-size:13px;
+.timerNumber{
+font-size:55px;
+font-weight:950;
+color:var(--gold);
+line-height:1;
 }
 
-.timer{
-  min-width:62px;
-  height:42px;
-  border-radius:14px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  background:#07101b;
-  color:var(--cyan);
-  font-size:20px;
-  font-weight:900;
+.timerLabel{
+font-size:11px;
+color:var(--muted);
+margin-top:5px;
 }
 
-.timer.warning{
-  color:var(--red);
-  animation:pulse .7s infinite;
+.challengeType{
+display:inline-block;
+padding:8px 13px;
+border-radius:12px;
+background:#4d8dff16;
+color:#8db5ff;
+font-size:12px;
+font-weight:900;
 }
 
-@keyframes pulse{
-  50%{transform:scale(1.06)}
+.question{
+font-size:24px;
+font-weight:950;
+text-align:center;
+line-height:1.45;
+margin:22px 0;
 }
 
-.challenge{
-  margin:18px 0;
-  padding:22px 15px;
-  border-radius:20px;
-  background:#080e19;
-  text-align:center;
-}
-
-.challengeEmoji{
-  font-size:45px;
-}
-
-.challenge h2{
-  font-size:21px;
-  margin:10px 0 7px;
-}
-
-.challenge p{
-  margin:0;
-  color:var(--muted);
-  line-height:1.7;
+.answers{
+display:grid;
+gap:10px;
 }
 
 .answer{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:10px;
+width:100%;
+min-height:56px;
+padding:13px 15px;
+border-radius:16px;
+border:1px solid #2a3951;
+background:#0c1524;
+color:white;
+font-size:15px;
+font-weight:700;
+text-align:right;
+transition:
+transform .06s ease,
+background .06s ease,
+border-color .06s ease;
 }
 
-.answer button{
-  padding:15px 8px;
-  border-radius:15px;
-  color:white;
-  background:#182235;
-  border:1px solid var(--border);
-  font-weight:700;
+.answer:active{
+transform:scale(.965);
+background:#17243a;
 }
 
-.answer button:active{
-  transform:scale(.96);
+.answer.correct{
+background:#35d07f20;
+border-color:var(--green);
+color:#7df0ad;
 }
 
-.answer button.correct{
-  background:rgba(40,209,124,.18);
-  border-color:var(--green);
-  color:var(--green);
+.answer.wrong{
+background:#ff596820;
+border-color:var(--red);
+color:#ff9ba5;
 }
 
-.answer button.wrong{
-  background:rgba(255,85,112,.16);
-  border-color:var(--red);
-  color:var(--red);
+.answer:disabled{
+opacity:1;
 }
 
-/* DAILY */
-
-.sectionTitle{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  margin:22px 3px 10px;
+.notice{
+height:22px;
+margin-top:8px;
+text-align:center;
+font-size:13px;
+color:var(--muted);
 }
 
-.sectionTitle h3{
-  margin:0;
+.actions{
+display:flex;
+gap:8px;
+margin-top:12px;
 }
 
-.sectionTitle span{
-  color:var(--muted);
-  font-size:12px;
+.secondary{
+flex:1;
+min-height:48px;
+border-radius:14px;
+border:1px solid var(--line);
+background:#182336;
+color:white;
+font-weight:800;
 }
 
-.daily{
-  background:var(--card);
-  border:1px solid var(--border);
-  border-radius:22px;
-  overflow:hidden;
+.secondary:active{
+transform:scale(.97);
 }
 
-.task{
-  display:flex;
-  align-items:center;
-  gap:12px;
-  padding:15px;
-  border-bottom:1px solid var(--border);
+.mission{
+display:flex;
+align-items:center;
+gap:10px;
+padding:14px 0;
+border-bottom:1px solid var(--line);
 }
 
-.task:last-child{
-  border-bottom:0;
+.mission:last-child{
+border-bottom:0;
 }
 
-.taskIcon{
-  width:43px;
-  height:43px;
-  border-radius:14px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  background:#182235;
-  font-size:20px;
+.missionIcon{
+width:44px;
+height:44px;
+border-radius:14px;
+display:grid;
+place-items:center;
+background:#19253a;
+font-size:21px;
 }
 
-.taskInfo{
-  flex:1;
+.missionInfo{
+flex:1;
 }
 
-.taskInfo b{
-  display:block;
+.missionInfo b{
+display:block;
+font-size:14px;
 }
 
-.taskInfo small{
-  color:var(--muted);
+.missionInfo span{
+font-size:11px;
+color:var(--muted);
 }
 
 .claim{
-  padding:9px 12px;
-  border-radius:11px;
-  background:#1b2940;
-  color:#7ea9ff;
-  font-size:12px;
+padding:9px 12px;
+border:0;
+border-radius:11px;
+background:var(--gold);
+font-weight:900;
 }
 
-.claim.done{
-  background:rgba(40,209,124,.12);
-  color:var(--green);
+.claim:disabled{
+opacity:.3;
 }
 
-/* NAV */
+.rewards{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:9px;
+}
+
+.reward{
+text-align:center;
+padding:16px 5px;
+border-radius:16px;
+background:#0c1523;
+border:1px solid var(--line);
+}
+
+.rewardIcon{
+font-size:28px;
+margin-bottom:5px;
+}
+
+.reward span{
+display:block;
+font-size:11px;
+color:var(--muted);
+margin-top:3px;
+}
+
+.bigAvatar{
+width:105px;
+height:105px;
+margin:5px auto 15px;
+display:grid;
+place-items:center;
+border-radius:30px;
+font-size:48px;
+background:
+linear-gradient(
+135deg,
+#315da8,
+#815cf0
+);
+}
+
+.center{
+text-align:center;
+}
+
+.soundButton{
+width:100%;
+}
 
 .nav{
-  position:sticky;
-  bottom:12px;
-  margin-top:22px;
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:7px;
-  padding:8px;
-  border-radius:23px;
-  background:rgba(17,23,36,.92);
-  backdrop-filter:blur(18px);
-  border:1px solid var(--border);
+position:fixed;
+z-index:100;
+left:50%;
+bottom:10px;
+transform:translateX(-50%);
+width:min(490px,calc(100% - 20px));
+display:grid;
+grid-template-columns:repeat(4,1fr);
+padding:7px;
+border-radius:23px;
+background:#0b111ded;
+backdrop-filter:blur(18px);
+border:1px solid #2c3a50;
+box-shadow:0 15px 40px #00000055;
 }
 
 .nav button{
-  background:transparent;
-  color:var(--muted);
-  padding:10px 3px;
-  border-radius:15px;
-  font-size:11px;
+border:0;
+background:transparent;
+color:var(--muted);
+border-radius:16px;
+padding:8px 3px;
 }
 
 .nav button.active{
-  color:white;
-  background:#202b3f;
+background:#1a2940;
+color:white;
 }
 
 .navIcon{
-  display:block;
-  font-size:20px;
-  margin-bottom:3px;
+display:block;
+font-size:21px;
 }
 
-/* MODAL */
-
-.modal{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.72);
-  backdrop-filter:blur(7px);
-  display:none;
-  align-items:flex-end;
-  justify-content:center;
-  z-index:50;
+.navText{
+display:block;
+font-size:10px;
+margin-top:2px;
 }
-
-.modal.show{
-  display:flex;
-}
-
-.modalBox{
-  width:100%;
-  max-width:520px;
-  background:#101724;
-  border:1px solid var(--border);
-  border-radius:28px 28px 0 0;
-  padding:23px;
-  animation:up .25s ease;
-}
-
-@keyframes up{
-  from{transform:translateY(100%)}
-  to{transform:translateY(0)}
-}
-
-.modalHeader{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-}
-
-.modalHeader h2{
-  margin:0;
-}
-
-.close{
-  background:#202a3a;
-  color:white;
-  width:40px;
-  height:40px;
-  border-radius:13px;
-}
-
-.setting{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:17px 0;
-  border-bottom:1px solid var(--border);
-}
-
-.switch{
-  width:52px;
-  height:29px;
-  border-radius:20px;
-  background:#293246;
-  padding:3px;
-}
-
-.switch i{
-  display:block;
-  width:23px;
-  height:23px;
-  border-radius:50%;
-  background:white;
-  transition:.2s;
-}
-
-.switch.on{
-  background:var(--green);
-}
-
-.switch.on i{
-  transform:translateX(23px);
-}
-
-/* TOAST */
 
 .toast{
-  position:fixed;
-  left:50%;
-  top:25px;
-  transform:translate(-50%,-100px);
-  background:#172235;
-  border:1px solid var(--border);
-  padding:13px 18px;
-  border-radius:15px;
-  z-index:100;
-  transition:.3s;
-  white-space:nowrap;
-  box-shadow:0 10px 35px rgba(0,0,0,.4);
+position:fixed;
+z-index:999;
+top:15px;
+left:50%;
+transform:
+translate(-50%,-150px);
+padding:12px 17px;
+border-radius:14px;
+background:#17243a;
+border:1px solid #3a4a64;
+font-size:13px;
+font-weight:900;
+transition:transform .2s ease;
+white-space:nowrap;
 }
 
 .toast.show{
-  transform:translate(-50%,0);
+transform:
+translate(-50%,0);
 }
 
-/* CONFETTI */
-
-.confetti{
-  position:fixed;
-  width:8px;
-  height:15px;
-  top:-20px;
-  z-index:200;
-  animation:fall 1.5s linear forwards;
+.small{
+color:var(--muted);
+font-size:12px;
+line-height:1.6;
 }
 
-@keyframes fall{
-  to{
-    transform:translateY(110vh) rotate(720deg);
-  }
-}
-
-.hidden{
-  display:none!important;
-}
 </style>
+
 </head>
 
 <body>
 
+<div class="app">
+
+
 <!-- LOGIN -->
-<div id="login" class="app">
-  <div class="loginBox">
-    <div class="logo">⚡</div>
-    <h1>Challenge <span>Cash</span></h1>
-    <p>PRO 3.5 • تحديات سريعة ومكافآت افتراضية</p>
 
-    <input
-      id="nameInput"
-      class="nameInput"
-      maxlength="18"
-      placeholder="اكتب اسم اللاعب"
-    >
+<section id="login" class="screen login active">
 
-    <button class="mainBtn" onclick="startGame()">
-      🚀 دخول اللعبة
-    </button>
-  </div>
+<div class="loginBox">
+
+<div class="logo">
+⚡
 </div>
 
+<h1>
+Challenge Cash
+</h1>
 
-<!-- GAME APP -->
-<div id="gameApp" class="app hidden">
+<div class="subtitle">
+PRO 4.1
+<br>
+تحديات سريعة • مستويات • مكافآت افتراضية
+</div>
 
-  <header class="top">
-    <div class="profile">
-      <div class="avatar" id="avatar">A</div>
-      <div>
-        <div class="profileName" id="playerName">Player</div>
-        <div class="rank" id="rank">مبتدئ • Level 1</div>
-      </div>
-    </div>
+<input
+id="nameInput"
+class="input"
+type="text"
+maxlength="18"
+autocomplete="off"
+placeholder="اكتب اسم اللاعب"
+>
 
-    <button class="iconBtn" onclick="openSettings()">⚙️</button>
-  </header>
+<button
+id="startButton"
+class="primary"
+onclick="startGame()"
+>
+ابدأ اللعب 🚀
+</button>
 
+<p class="small">
+الجوائز والعملات داخل اللعبة افتراضية فقط.
+</p>
 
-  <section class="balance">
-    <div class="balanceLabel">الرصيد الافتراضي</div>
-    <div class="money"><span>$</span><span id="cash">0</span></div>
-    <div class="balanceLabel">
-      XP <b id="xpText">0 / 100</b>
-    </div>
-    <div class="xpBar">
-      <div class="xpFill" id="xpFill"></div>
-    </div>
-  </section>
+</div>
 
-
-  <div class="grid">
-
-    <div class="stat">
-      <div class="statIcon">🔥</div>
-      <div class="statValue" id="streak">0</div>
-      <div class="statLabel">Streak</div>
-    </div>
-
-    <div class="stat">
-      <div class="statIcon">🏆</div>
-      <div class="statValue" id="wins">0</div>
-      <div class="statLabel">تحديات ناجحة</div>
-    </div>
-
-    <div class="stat">
-      <div class="statIcon">🎯</div>
-      <div class="statValue" id="total">0</div>
-      <div class="statLabel">إجمالي التحديات</div>
-    </div>
-
-    <div class="stat">
-      <div class="statIcon">💎</div>
-      <div class="statValue" id="gems">0</div>
-      <div class="statLabel">جواهر</div>
-    </div>
-
-  </div>
+</section>
 
 
-  <!-- GAME -->
-  <section class="game">
+<!-- HOME -->
 
-    <div class="gameTop">
-      <div class="challengeNo">
-        تحدي <b id="challengeNumber">1</b> / 10
-      </div>
+<section id="home" class="screen">
 
-      <div class="timer" id="timer">60</div>
-    </div>
+<div class="top">
 
-    <div class="challenge">
+<div class="brand">
+⚡ Challenge Cash
+</div>
 
-      <div class="challengeEmoji" id="challengeEmoji">🧠</div>
-
-      <h2 id="question">
-        جاهز للتحدي؟
-      </h2>
-
-      <p id="questionHint">
-        اختر الإجابة الصحيحة قبل انتهاء الوقت
-      </p>
-
-    </div>
-
-    <div class="answer" id="answers"></div>
-
-  </section>
-
-
-  <!-- DAILY -->
-  <div class="sectionTitle">
-    <h3>🎁 المهام اليومية</h3>
-    <span>جوائز افتراضية</span>
-  </div>
-
-  <div class="daily">
-
-    <div class="task">
-      <div class="taskIcon">🎯</div>
-
-      <div class="taskInfo">
-        <b>أكمل 3 تحديات</b>
-        <small id="task3">0 / 3</small>
-      </div>
-
-      <button class="claim" id="claim3" onclick="claimReward(3)">
-        +50
-      </button>
-    </div>
-
-
-    <div class="task">
-      <div class="taskIcon">🏆</div>
-
-      <div class="taskInfo">
-        <b>اربح 5 تحديات</b>
-        <small id="task5">0 / 5</small>
-      </div>
-
-      <button class="claim" id="claim5" onclick="claimReward(5)">
-        +100
-      </button>
-    </div>
-
-
-    <div class="task">
-      <div class="taskIcon">🔥</div>
-
-      <div class="taskInfo">
-        <b>حقق Streak</b>
-        <small>استمر باللعب</small>
-      </div>
-
-      <button class="claim" id="claimStreak" onclick="claimStreakReward()">
-        +150
-      </button>
-    </div>
-
-  </div>
-
-
-  <nav class="nav">
-
-    <button class="active">
-      <span class="navIcon">🏠</span>
-      الرئيسية
-    </button>
-
-    <button onclick="showProfile()">
-      <span class="navIcon">👤</span>
-      اللاعب
-    </button>
-
-    <button onclick="showRewards()">
-      <span class="navIcon">🎁</span>
-      الجوائز
-    </button>
-
-    <button onclick="openSettings()">
-      <span class="navIcon">⚙️</span>
-      الإعدادات
-    </button>
-
-  </nav>
+<div class="coinBadge">
+🪙 <span id="coins">0</span>
+</div>
 
 </div>
 
 
-<!-- SETTINGS -->
-<div class="modal" id="settingsModal">
+<div class="card">
 
-  <div class="modalBox">
+<div class="profileHead">
 
-    <div class="modalHeader">
-      <h2>⚙️ الإعدادات</h2>
-      <button class="close" onclick="closeSettings()">×</button>
-    </div>
+<div class="avatar">
+😎
+</div>
 
-    <div class="setting">
-      <span>🔊 الأصوات</span>
-      <button class="switch on" id="soundSwitch" onclick="toggleSound()">
-        <i></i>
-      </button>
-    </div>
+<div>
 
-    <div class="setting">
-      <span>✨ المؤثرات</span>
-      <button class="switch on" id="fxSwitch" onclick="toggleFX()">
-        <i></i>
-      </button>
-    </div>
+<div
+id="playerName"
+class="playerName"
+>
+Player
+</div>
 
-    <button class="mainBtn" onclick="resetGame()">
-      إعادة ضبط التقدم
-    </button>
+<div class="levelText">
+المستوى
+<span id="level">1</span>
+•
+XP
+<span id="xp">0</span>
+</div>
 
-  </div>
+</div>
 
 </div>
 
 
-<!-- TOAST -->
-<div class="toast" id="toast"></div>
+<div class="progress">
+
+<div
+id="xpFill"
+class="progressFill"
+>
+</div>
+
+</div>
+
+
+<div class="stats">
+
+<div class="stat">
+
+<b id="statCoins">
+0
+</b>
+
+<span>
+عملات
+</span>
+
+</div>
+
+
+<div class="stat">
+
+<b id="score">
+0
+</b>
+
+<span>
+نقاط
+</span>
+
+</div>
+
+
+<div class="stat">
+
+<b id="played">
+0
+</b>
+
+<span>
+تحديات
+</span>
+
+</div>
+
+</div>
+
+</div>
+
+
+<div class="sectionTitle">
+🎮 التحدي الحالي
+</div>
+
+
+<div class="card challengeCard">
+
+
+<div class="timerCircle">
+
+<div
+id="timer"
+class="timerNumber"
+>
+60
+</div>
+
+<div class="timerLabel">
+ثانية
+</div>
+
+</div>
+
+
+<div class="center">
+
+<span
+id="challengeType"
+class="challengeType"
+>
+جاهز
+</span>
+
+<div
+id="question"
+class="question"
+>
+اضغط ابدأ للعب
+</div>
+
+</div>
+
+
+<div
+id="answers"
+class="answers"
+>
+</div>
+
+
+<div
+id="notice"
+class="notice"
+>
+</div>
+
+
+<div class="actions">
+
+<button
+class="secondary"
+onclick="skipChallenge()"
+>
+تخطي ⏭️
+</button>
+
+<button
+class="secondary"
+onclick="newChallenge()"
+>
+تحدي جديد 🔄
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- MISSIONS -->
+
+<section id="missions" class="screen">
+
+<div class="top">
+
+<div class="brand">
+🎯 المهام اليومية
+</div>
+
+<div class="coinBadge">
+BONUS
+</div>
+
+</div>
+
+
+<div
+id="missionsBox"
+class="card"
+>
+</div>
+
+
+<div class="sectionTitle">
+🎁 المكافآت الافتراضية
+</div>
+
+
+<div class="rewards">
+
+<div class="reward">
+
+<div class="rewardIcon">
+🪙
+</div>
+
+<b>
+100
+</b>
+
+<span>
+عملة
+</span>
+
+</div>
+
+
+<div class="reward">
+
+<div class="rewardIcon">
+⭐
+</div>
+
+<b>
+50 XP
+</b>
+
+<span>
+خبرة
+</span>
+
+</div>
+
+
+<div class="reward">
+
+<div class="rewardIcon">
+🔥
+</div>
+
+<b>
+STREAK
+</b>
+
+<span>
+إنجاز
+</span>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- PROFILE -->
+
+<section id="profile" class="screen">
+
+<div class="top">
+
+<div class="brand">
+👤 البروفايل
+</div>
+
+<button
+class="secondary"
+style="flex:0;padding:10px 13px"
+onclick="resetGame()"
+>
+إعادة
+</button>
+
+</div>
+
+
+<div class="card center">
+
+<div class="bigAvatar">
+😎
+</div>
+
+<div
+id="profileName"
+class="playerName"
+>
+Player
+</div>
+
+<div class="levelText">
+المستوى
+<span id="profileLevel">
+1
+</span>
+</div>
+
+
+<div class="stats">
+
+<div class="stat">
+
+<b id="profileCoins">
+0
+</b>
+
+<span>
+عملات
+</span>
+
+</div>
+
+
+<div class="stat">
+
+<b id="profileScore">
+0
+</b>
+
+<span>
+نقاط
+</span>
+
+</div>
+
+
+<div class="stat">
+
+<b id="bestScore">
+0
+</b>
+
+<span>
+أفضل نتيجة
+</span>
+
+</div>
+
+</div>
+
+</div>
+
+
+<div class="card">
+
+<b>
+🏆 تقدم المستوى
+</b>
+
+<div class="progress">
+
+<div
+id="profileXP"
+class="progressFill"
+>
+</div>
+
+</div>
+
+<p
+id="levelInfo"
+class="small"
+>
+</p>
+
+</div>
+
+
+<div class="card">
+
+<b>
+🔊 المؤثرات الصوتية
+</b>
+
+<div class="actions">
+
+<button
+id="soundButton"
+class="secondary soundButton"
+onclick="toggleSound()"
+>
+الصوت: تشغيل 🔊
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- NAV -->
+
+<nav
+id="nav"
+class="nav"
+style="display:none"
+>
+
+<button
+class="active"
+onclick="openScreen('home',this)"
+>
+
+<span class="navIcon">
+🏠
+</span>
+
+<span class="navText">
+الرئيسية
+</span>
+
+</button>
+
+
+<button
+onclick="openScreen('missions',this)"
+>
+
+<span class="navIcon">
+🎯
+</span>
+
+<span class="navText">
+المهام
+</span>
+
+</button>
+
+
+<button
+onclick="openScreen('profile',this)"
+>
+
+<span class="navIcon">
+👤
+</span>
+
+<span class="navText">
+البروفايل
+</span>
+
+</button>
+
+
+<button
+onclick="newChallenge()"
+>
+
+<span class="navIcon">
+⚡
+</span>
+
+<span class="navText">
+تحدي
+</span>
+
+</button>
+
+</nav>
+
+
+<div
+id="toast"
+class="toast"
+>
+</div>
+
+</div>
 
 
 <script>
+
 
 /* =========================
    DATA
@@ -826,372 +1117,487 @@ button{
 const challenges = [
 
 {
- emoji:"🧠",
- q:"ما هو ناتج 8 × 7 ؟",
- hint:"اختبار سرعة الحساب",
- a:["54","56","64","48"],
- correct:1
+type:"🧠 حساب سريع",
+question:"كم يساوي 18 × 4؟",
+answers:["62","72","82","92"],
+correct:1
 },
 
 {
- emoji:"🌍",
- q:"ما هي عاصمة فرنسا؟",
- hint:"مدينة أوروبية مشهورة",
- a:["مدريد","روما","باريس","برلين"],
- correct:2
+type:"🔢 تسلسل",
+question:"ما الرقم التالي؟ 2، 4، 8، 16، ؟",
+answers:["20","24","30","32"],
+correct:3
 },
 
 {
- emoji:"🚀",
- q:"أي كوكب يُعرف بالكوكب الأحمر؟",
- hint:"لونه مميز في السماء",
- a:["المريخ","المشتري","الزهرة","عطارد"],
- correct:0
+type:"🧩 منطق",
+question:"لديك 3 تفاحات وأخذت 2. كم أصبح معك؟",
+answers:["1","2","3","5"],
+correct:1
 },
 
 {
- emoji:"💡",
- q:"كم عدد أيام الأسبوع؟",
- hint:"سؤال سريع",
- a:["5","6","7","8"],
- correct:2
+type:"🌍 معلومات",
+question:"ما أكبر كوكب في المجموعة الشمسية؟",
+answers:["الأرض","المريخ","المشتري","الزهرة"],
+correct:2
 },
 
 {
- emoji:"🎮",
- q:"أي جهاز يستخدم لتشغيل الألعاب؟",
- hint:"اختر الإجابة الأنسب",
- a:["وحدة تحكم","آلة حاسبة","ساعة","طابعة"],
- correct:0
+type:"⚡ سرعة",
+question:"أي كلمة مختلفة؟",
+answers:["تفاح","موز","برتقال","سيارة"],
+correct:3
 },
 
 {
- emoji:"⚡",
- q:"أي مادة توصل الكهرباء بشكل جيد؟",
- hint:"معدن معروف",
- a:["خشب","نحاس","بلاستيك","زجاج"],
- correct:1
+type:"🎯 اختيار",
+question:"إذا كان اليوم الاثنين، بعد 3 أيام يكون؟",
+answers:["الثلاثاء","الأربعاء","الخميس","الجمعة"],
+correct:2
 },
 
 {
- emoji:"🐬",
- q:"الدلفين ينتمي إلى أي مجموعة؟",
- hint:"ليس سمكة",
- a:["الثدييات","الزواحف","الطيور","الحشرات"],
- correct:0
+type:"🔤 حروف",
+question:"أي حرف يأتي بعد M؟",
+answers:["L","N","O","P"],
+correct:1
 },
 
 {
- emoji:"🏀",
- q:"كم لاعبًا من الفريق الواحد يكون داخل الملعب في كرة السلة؟",
- hint:"في اللعب التقليدي",
- a:["4","5","6","7"],
- correct:1
+type:"➗ رياضيات",
+question:"كم يساوي 100 ÷ 5؟",
+answers:["10","15","20","25"],
+correct:2
 },
 
 {
- emoji:"📚",
- q:"كم شهرًا في السنة؟",
- hint:"عدد معروف",
- a:["10","11","12","13"],
- correct:2
+type:"🧠 لغز",
+question:"شيء له أسنان ولا يعض، ما هو؟",
+answers:["الكرسي","المشط","الباب","القلم"],
+correct:1
 },
 
 {
- emoji:"🔥",
- q:"ما الذي تحتاجه النار لكي تستمر بالاحتراق؟",
- hint:"عنصر موجود في الهواء",
- a:["الأكسجين","الذهب","الحديد","الماء"],
- correct:0
+type:"🏆 ذاكرة",
+question:"أي رقم موجود في المجموعة؟ 7 - 3 - 9",
+answers:["2","7","5","8"],
+correct:1
 }
 
 ];
 
 
 /* =========================
-   STATE
+   GAME STATE
 ========================= */
 
-let state = JSON.parse(
-  localStorage.getItem("challengeCash35")
-) || {
+let game = {
 
-  name:"",
-  cash:0,
-  xp:0,
-  level:1,
-  wins:0,
-  total:0,
-  gems:0,
-  streak:0,
-  challenge:0,
-  task3Claimed:false,
-  task5Claimed:false,
-  streakClaimed:false
+name:"",
+coins:0,
+score:0,
+xp:0,
+level:1,
+played:0,
+correct:0,
+best:0,
+missionPlayed:false,
+missionCorrect:false
 
 };
 
-let timer = 60;
-let timerInterval = null;
-let locked = false;
 
-let soundOn =
-  localStorage.getItem("soundOn") !== "false";
+let currentChallenge = null;
 
-let fxOn =
-  localStorage.getItem("fxOn") !== "false";
+let timeLeft = 60;
+
+let timer = null;
+
+let answered = false;
+
+let soundEnabled = true;
+
+let audioContext = null;
 
 
 /* =========================
-   START
+   LOAD GAME
+========================= */
+
+function loadGame(){
+
+try{
+
+const saved =
+localStorage.getItem("ChallengeCashPRO41");
+
+if(saved){
+
+const data =
+JSON.parse(saved);
+
+game = {
+...game,
+...data
+};
+
+}
+
+}catch(error){
+
+console.log(error);
+
+}
+
+}
+
+
+/* =========================
+   SAVE GAME
+========================= */
+
+function saveGame(){
+
+try{
+
+localStorage.setItem(
+"ChallengeCashPRO41",
+JSON.stringify(game)
+);
+
+}catch(error){
+
+console.log(error);
+
+}
+
+updateUI();
+
+}
+
+
+/* =========================
+   START GAME
 ========================= */
 
 function startGame(){
 
-  const input =
-    document.getElementById("nameInput");
+const input =
+document.getElementById("nameInput");
 
-  const name =
-    input.value.trim() || "Player";
+const name =
+input.value.trim();
 
-  state.name = name;
 
-  save();
+if(!name){
 
-  document
-    .getElementById("login")
-    .classList.add("hidden");
+showToast("⚠️ اكتب اسم اللاعب");
 
-  document
-    .getElementById("gameApp")
-    .classList.remove("hidden");
+input.focus();
 
-  updateUI();
+return;
 
-  nextChallenge();
+}
+
+
+if(name.length < 2){
+
+showToast("⚠️ الاسم قصير جداً");
+
+input.focus();
+
+return;
+
+}
+
+
+game.name = name;
+
+
+saveGame();
+
+
+document
+.getElementById("login")
+.classList
+.remove("active");
+
+
+document
+.getElementById("home")
+.classList
+.add("active");
+
+
+document
+.getElementById("nav")
+.style
+.display = "grid";
+
+
+updateUI();
+
+showToast(
+"👋 أهلاً "+name
+);
+
+
+newChallenge();
 
 }
 
 
 /* =========================
-   SAVE
+   SCREEN
 ========================= */
 
-function save(){
+function openScreen(id,button){
 
-  localStorage.setItem(
-    "challengeCash35",
-    JSON.stringify(state)
-  );
+document
+.querySelectorAll(".screen")
+.forEach(
+screen => screen.classList.remove("active")
+);
+
+
+document
+.getElementById(id)
+.classList
+.add("active");
+
+
+document
+.querySelectorAll(".nav button")
+.forEach(
+b => b.classList.remove("active")
+);
+
+
+if(button){
+
+button.classList.add("active");
+
+}
+
+
+if(id==="missions"){
+
+renderMissions();
+
+}
+
+
+updateUI();
 
 }
 
 
 /* =========================
-   UI
+   UPDATE UI
 ========================= */
 
 function updateUI(){
 
-  document.getElementById("playerName")
-    .textContent = state.name;
+const name =
+game.name || "Player";
 
-  document.getElementById("avatar")
-    .textContent =
-      state.name.charAt(0).toUpperCase();
 
-  document.getElementById("cash")
-    .textContent = state.cash;
+document.getElementById("playerName")
+.textContent = name;
 
-  document.getElementById("wins")
-    .textContent = state.wins;
+document.getElementById("profileName")
+.textContent = name;
 
-  document.getElementById("total")
-    .textContent = state.total;
 
-  document.getElementById("gems")
-    .textContent = state.gems;
+document.getElementById("coins")
+.textContent = game.coins;
 
-  document.getElementById("streak")
-    .textContent = state.streak;
+document.getElementById("statCoins")
+.textContent = game.coins;
 
-  const xpNeeded =
-    state.level * 100;
+document.getElementById("score")
+.textContent = game.score;
 
-  document.getElementById("xpText")
-    .textContent =
-      `${state.xp} / ${xpNeeded}`;
+document.getElementById("played")
+.textContent = game.played;
 
-  document.getElementById("xpFill")
-    .style.width =
-      Math.min(
-        100,
-        state.xp / xpNeeded * 100
-      ) + "%";
+document.getElementById("level")
+.textContent = game.level;
 
-  let rank="مبتدئ";
+document.getElementById("xp")
+.textContent = game.xp;
 
-  if(state.level >= 5)
-    rank="محترف";
 
-  if(state.level >= 10)
-    rank="خبير";
+document.getElementById("profileCoins")
+.textContent = game.coins;
 
-  if(state.level >= 20)
-    rank="أسطورة";
+document.getElementById("profileScore")
+.textContent = game.score;
 
-  document.getElementById("rank")
-    .textContent =
-      `${rank} • Level ${state.level}`;
+document.getElementById("bestScore")
+.textContent = game.best;
 
-  document.getElementById("task3")
-    .textContent =
-      `${Math.min(state.total,3)} / 3`;
+document.getElementById("profileLevel")
+.textContent = game.level;
 
-  document.getElementById("task5")
-    .textContent =
-      `${Math.min(state.wins,5)} / 5`;
 
-  if(state.task3Claimed){
-    document.getElementById("claim3")
-      .textContent="✓";
-    document.getElementById("claim3")
-      .classList.add("done");
-  }
+const needed =
+game.level * 100;
 
-  if(state.task5Claimed){
-    document.getElementById("claim5")
-      .textContent="✓";
-    document.getElementById("claim5")
-      .classList.add("done");
-  }
 
-  if(state.streakClaimed){
-    document.getElementById("claimStreak")
-      .textContent="✓";
-    document.getElementById("claimStreak")
-      .classList.add("done");
-  }
+const percent =
+Math.min(
+100,
+(game.xp / needed) * 100
+);
+
+
+document.getElementById("xpFill")
+.style.width =
+percent+"%";
+
+
+document.getElementById("profileXP")
+.style.width =
+percent+"%";
+
+
+document.getElementById("levelInfo")
+.textContent =
+game.xp+
+" / "+
+needed+
+" XP للوصول للمستوى التالي";
+
 
 }
 
 
 /* =========================
-   CHALLENGE
+   NEW CHALLENGE
 ========================= */
 
-function nextChallenge(){
+function newChallenge(){
 
-  clearInterval(timerInterval);
+if(!game.name){
 
-  locked=false;
-
-  state.challenge++;
-
-  if(state.challenge > 10){
-
-    state.challenge=1;
-
-    showToast("🎉 أكملت 10 تحديات!");
-
-    if(fxOn)
-      confetti();
-
-  }
-
-  const c =
-    challenges[state.challenge-1];
-
-  document.getElementById("challengeNumber")
-    .textContent=state.challenge;
-
-  document.getElementById("challengeEmoji")
-    .textContent=c.emoji;
-
-  document.getElementById("question")
-    .textContent=c.q;
-
-  document.getElementById("questionHint")
-    .textContent=c.hint;
-
-  const answers =
-    document.getElementById("answers");
-
-  answers.innerHTML="";
-
-  c.a.forEach((answer,index)=>{
-
-    const btn =
-      document.createElement("button");
-
-    btn.textContent=answer;
-
-    btn.onclick=()=>{
-      answerQuestion(index,btn);
-    };
-
-    answers.appendChild(btn);
-
-  });
-
-  timer=60;
-
-  updateTimer();
-
-  timerInterval =
-    setInterval(()=>{
-
-      timer--;
-
-      updateTimer();
-
-      if(timer<=0){
-
-        clearInterval(timerInterval);
-
-        if(!locked){
-
-          locked=true;
-
-          state.total++;
-
-          state.streak=0;
-
-          save();
-
-          updateUI();
-
-          showToast("⏰ انتهى الوقت!");
-
-          setTimeout(
-            nextChallenge,
-            1200
-          );
-
-        }
-
-      }
-
-    },1000);
+return;
 
 }
 
 
-/* =========================
-   TIMER
-========================= */
+clearInterval(timer);
 
-function updateTimer(){
+answered = false;
 
-  const el =
-    document.getElementById("timer");
+timeLeft = 60;
 
-  el.textContent=timer;
 
-  if(timer<=10)
-    el.classList.add("warning");
-  else
-    el.classList.remove("warning");
+currentChallenge =
+challenges[
+Math.floor(
+Math.random()*challenges.length
+)
+];
+
+
+document.getElementById("timer")
+.textContent = "60";
+
+
+document.getElementById("challengeType")
+.textContent =
+currentChallenge.type;
+
+
+document.getElementById("question")
+.textContent =
+currentChallenge.question;
+
+
+document.getElementById("notice")
+.textContent =
+"اختر الإجابة الصحيحة بسرعة ⚡";
+
+
+const answersBox =
+document.getElementById("answers");
+
+
+answersBox.innerHTML = "";
+
+
+currentChallenge.answers
+.forEach(
+(answer,index)=>{
+
+const button =
+document.createElement("button");
+
+button.className =
+"answer";
+
+button.type = "button";
+
+button.textContent =
+answer;
+
+
+/*
+   pointerdown يجعل الاستجابة
+   أسرع على شاشات اللمس
+*/
+
+button.addEventListener(
+"pointerdown",
+function(event){
+
+event.preventDefault();
+
+if(answered)return;
+
+answerQuestion(
+index,
+button
+);
+
+},
+{
+passive:false
+}
+);
+
+
+answersBox.appendChild(button);
+
+});
+
+
+/*
+   تحدي جديد كل 60 ثانية
+*/
+
+timer =
+setInterval(
+()=>{
+
+timeLeft--;
+
+document.getElementById("timer")
+.textContent = timeLeft;
+
+
+if(timeLeft <= 0){
+
+timeOut();
+
+}
+
+},
+1000
+);
 
 }
 
@@ -1200,281 +1606,326 @@ function updateTimer(){
    ANSWER
 ========================= */
 
-function answerQuestion(index,btn){
+function answerQuestion(index,button){
 
-  if(locked)
-    return;
+if(answered){
 
-  locked=true;
+return;
 
-  clearInterval(timerInterval);
-
-  const c =
-    challenges[state.challenge-1];
-
-  const buttons =
-    document.querySelectorAll(".answer button");
-
-  buttons.forEach((b,i)=>{
-
-    b.disabled=true;
-
-    if(i===c.correct)
-      b.classList.add("correct");
-
-  });
-
-  state.total++;
-
-  if(index===c.correct){
-
-    btn.classList.add("correct");
-
-    state.wins++;
-
-    state.streak++;
-
-    const reward =
-      10 + Math.floor(timer / 5);
-
-    state.cash += reward;
-
-    state.gems += 1;
-
-    state.xp += 25;
-
-    showToast(
-      `✅ صحيح! +$${reward} +25 XP`
-    );
-
-    playTone(700,0.12);
-
-    if(fxOn)
-      sparkle();
-
-  }else{
-
-    btn.classList.add("wrong");
-
-    state.streak=0;
-
-    state.xp += 5;
-
-    showToast("❌ إجابة خاطئة");
-
-    playTone(180,0.18);
-
-  }
+}
 
 
-  levelCheck();
+answered = true;
 
-  save();
+clearInterval(timer);
 
-  updateUI();
 
-  setTimeout(
-    nextChallenge,
-    1400
-  );
+const buttons =
+document.querySelectorAll(".answer");
+
+
+buttons.forEach(
+button=>{
+button.disabled = true;
+}
+);
+
+
+game.played++;
+
+
+if(
+index === currentChallenge.correct
+){
+
+button.classList.add("correct");
+
+
+game.correct++;
+
+game.score += 10;
+
+game.coins += 5;
+
+game.xp += 15;
+
+
+document.getElementById("notice")
+.textContent =
+"🎉 إجابة صحيحة! +10 نقاط";
+
+
+playSound(900);
+
+}
+
+else{
+
+button.classList.add("wrong");
+
+
+if(buttons[currentChallenge.correct]){
+
+buttons[
+currentChallenge.correct
+].classList.add("correct");
+
+}
+
+
+document.getElementById("notice")
+.textContent =
+"❌ إجابة خاطئة";
+
+
+playSound(180);
+
+}
+
+
+if(game.score > game.best){
+
+game.best =
+game.score;
+
+}
+
+
+checkLevelUp();
+
+saveGame();
+
+
+/*
+   انتقال سريع جداً
+*/
+
+setTimeout(
+newChallenge,
+800
+);
 
 }
 
 
 /* =========================
-   LEVEL
+   TIME OUT
 ========================= */
 
-function levelCheck(){
+function timeOut(){
 
-  const needed =
-    state.level * 100;
+if(answered){
 
-  if(state.xp >= needed){
+return;
 
-    state.xp -= needed;
+}
 
-    state.level++;
 
-    state.gems += 5;
+answered = true;
 
-    showToast(
-      `🎉 Level Up! أصبحت Level ${state.level}`
-    );
+clearInterval(timer);
 
-    playTone(900,.25);
 
-    if(fxOn)
-      confetti();
+game.played++;
 
-  }
+game.xp += 3;
+
+
+document.getElementById("notice")
+.textContent =
+"⏰ انتهى الوقت!";
+
+
+playSound(120);
+
+saveGame();
+
+
+setTimeout(
+newChallenge,
+600
+);
 
 }
 
 
 /* =========================
-   DAILY REWARDS
+   SKIP
 ========================= */
 
-function claimReward(type){
+function skipChallenge(){
 
-  if(type===3){
+if(answered){
 
-    if(state.total<3){
+return;
 
-      showToast("أكمل 3 تحديات أولًا");
-
-      return;
-
-    }
-
-    if(state.task3Claimed){
-
-      showToast("استلمت هذه الجائزة");
-
-      return;
-
-    }
-
-    state.task3Claimed=true;
-
-    state.cash+=50;
-
-    state.gems+=2;
-
-    showToast("🎁 حصلت على $50 + 2 💎");
-
-  }
+}
 
 
-  if(type===5){
+answered = true;
 
-    if(state.wins<5){
+clearInterval(timer);
 
-      showToast("اربح 5 تحديات أولًا");
 
-      return;
+document.getElementById("notice")
+.textContent =
+"⏭️ تم التخطي";
 
-    }
 
-    if(state.task5Claimed){
-
-      showToast("استلمت هذه الجائزة");
-
-      return;
-
-    }
-
-    state.task5Claimed=true;
-
-    state.cash+=100;
-
-    state.gems+=5;
-
-    showToast("🏆 حصلت على $100 + 5 💎");
-
-  }
-
-  save();
-
-  updateUI();
+setTimeout(
+newChallenge,
+300
+);
 
 }
 
 
 /* =========================
-   STREAK
+   LEVEL UP
 ========================= */
 
-function claimStreakReward(){
+function checkLevelUp(){
 
-  if(state.streak<3){
+while(
+game.xp >= game.level * 100
+){
 
-    showToast("حقق Streak من 3 أولًا");
+game.xp -=
+game.level * 100;
 
-    return;
+game.level++;
 
-  }
+game.coins += 20;
 
-  if(state.streakClaimed){
 
-    showToast("استلمت هذه الجائزة");
+showToast(
+"🎉 وصلت للمستوى "+
+game.level+
+" +20 🪙"
+);
 
-    return;
 
-  }
+playSound(1200);
 
-  state.streakClaimed=true;
-
-  state.cash+=150;
-
-  state.gems+=10;
-
-  showToast("🔥 Streak Reward +$150 +10 💎");
-
-  if(fxOn)
-    confetti();
-
-  save();
-
-  updateUI();
+}
 
 }
 
 
 /* =========================
-   SETTINGS
+   MISSIONS
 ========================= */
 
-function openSettings(){
+function renderMissions(){
 
-  document
-    .getElementById("settingsModal")
-    .classList.add("show");
+const box =
+document.getElementById("missionsBox");
+
+
+box.innerHTML = "";
+
+
+const missions = [
+
+{
+icon:"⚡",
+title:"العب 3 تحديات",
+current:Math.min(game.played,3),
+target:3,
+reward:20,
+key:"missionPlayed"
+},
+
+{
+icon:"🎯",
+title:"أجب إجابتين بشكل صحيح",
+current:Math.min(game.correct,2),
+target:2,
+reward:30,
+key:"missionCorrect"
+}
+
+];
+
+
+missions.forEach(
+mission=>{
+
+const completed =
+mission.current >= mission.target;
+
+const claimed =
+game[mission.key];
+
+
+const row =
+document.createElement("div");
+
+row.className =
+"mission";
+
+
+row.innerHTML = `
+
+<div class="missionIcon">
+${mission.icon}
+</div>
+
+<div class="missionInfo">
+
+<b>
+${mission.title}
+</b>
+
+<span>
+${mission.current} / ${mission.target}
+</span>
+
+</div>
+
+<button
+class="claim"
+${(!completed || claimed) ? "disabled" : ""}
+>
+${claimed ? "تم" : "استلام"}
+</button>
+
+`;
+
+
+if(completed && !claimed){
+
+row
+.querySelector(".claim")
+.addEventListener(
+"click",
+()=>{
+
+game[mission.key] = true;
+
+game.coins += mission.reward;
+
+saveGame();
+
+renderMissions();
+
+showToast(
+"🎁 +"+
+mission.reward+
+" عملة"
+);
+
+playSound(1000);
+
+}
+);
 
 }
 
-function closeSettings(){
 
-  document
-    .getElementById("settingsModal")
-    .classList.remove("show");
+box.appendChild(row);
 
-}
-
-function toggleSound(){
-
-  soundOn=!soundOn;
-
-  localStorage.setItem(
-    "soundOn",
-    soundOn
-  );
-
-  document
-    .getElementById("soundSwitch")
-    .classList.toggle(
-      "on",
-      soundOn
-    );
-
-}
-
-function toggleFX(){
-
-  fxOn=!fxOn;
-
-  localStorage.setItem(
-    "fxOn",
-    fxOn
-  );
-
-  document
-    .getElementById("fxSwitch")
-    .classList.toggle(
-      "on",
-      fxOn
-    );
+});
 
 }
 
@@ -1483,158 +1934,83 @@ function toggleFX(){
    SOUND
 ========================= */
 
-let audioContext=null;
+function toggleSound(){
 
-function playTone(freq,duration){
+soundEnabled =
+!soundEnabled;
 
-  if(!soundOn)
-    return;
 
-  try{
+document.getElementById(
+"soundButton"
+).textContent =
+"الصوت: "+
+(
+soundEnabled
+?
+"تشغيل 🔊"
+:
+"إيقاف 🔇"
+);
 
-    if(!audioContext)
-      audioContext =
-        new (
-          window.AudioContext ||
-          window.webkitAudioContext
-        )();
-
-    const osc =
-      audioContext.createOscillator();
-
-    const gain =
-      audioContext.createGain();
-
-    osc.frequency.value=freq;
-
-    osc.type="sine";
-
-    gain.gain.setValueAtTime(
-      .05,
-      audioContext.currentTime
-    );
-
-    gain.gain.exponentialRampToValueAtTime(
-      .001,
-      audioContext.currentTime+duration
-    );
-
-    osc.connect(gain);
-
-    gain.connect(
-      audioContext.destination
-    );
-
-    osc.start();
-
-    osc.stop(
-      audioContext.currentTime+duration
-    );
-
-  }catch(e){}
 
 }
 
 
 /* =========================
-   EFFECTS
+   SOUND EFFECT
 ========================= */
 
-function confetti(){
+function playSound(frequency){
 
-  const colors=[
-    "#4f8cff",
-    "#27d9ff",
-    "#28d17c",
-    "#ffc857",
-    "#ff5570",
-    "#a56cff"
-  ];
+if(!soundEnabled){
 
-  for(let i=0;i<55;i++){
-
-    const el=
-      document.createElement("div");
-
-    el.className="confetti";
-
-    el.style.left =
-      Math.random()*100+"%";
-
-    el.style.background =
-      colors[
-        Math.floor(
-          Math.random()*colors.length
-        )
-      ];
-
-    el.style.animationDelay =
-      Math.random()*.5+"s";
-
-    document.body.appendChild(el);
-
-    setTimeout(
-      ()=>el.remove(),
-      2200
-    );
-
-  }
+return;
 
 }
 
 
-function sparkle(){
+try{
 
-  if(!fxOn)
-    return;
+audioContext =
+audioContext ||
+new(
+window.AudioContext ||
+window.webkitAudioContext
+)();
 
-  for(let i=0;i<12;i++){
 
-    const s=
-      document.createElement("div");
+const oscillator =
+audioContext.createOscillator();
 
-    s.textContent="✦";
+const gain =
+audioContext.createGain();
 
-    s.style.position="fixed";
 
-    s.style.left =
-      25+Math.random()*50+"%";
+oscillator.frequency.value =
+frequency;
 
-    s.style.top =
-      35+Math.random()*25+"%";
+gain.gain.value = 0.035;
 
-    s.style.color =
-      ["#4f8cff","#27d9ff","#ffc857"]
-      [Math.floor(Math.random()*3)];
 
-    s.style.fontSize =
-      15+Math.random()*20+"px";
+oscillator.connect(gain);
 
-    s.style.zIndex=300;
+gain.connect(
+audioContext.destination
+);
 
-    s.style.transition=
-      "1s ease";
 
-    document.body.appendChild(s);
+oscillator.start();
 
-    requestAnimationFrame(()=>{
 
-      s.style.transform=
-        `translate(
-          ${(Math.random()-.5)*180}px,
-          ${(Math.random()-.5)*180}px
-        ) scale(0)`;
+oscillator.stop(
+audioContext.currentTime + 0.12
+);
 
-      s.style.opacity="0";
+}catch(error){
 
-    });
+console.log(error);
 
-    setTimeout(
-      ()=>s.remove(),
-      1100
-    );
-
-  }
+}
 
 }
 
@@ -1643,52 +2019,25 @@ function sparkle(){
    TOAST
 ========================= */
 
-let toastTimeout;
-
 function showToast(message){
 
-  const toast =
-    document.getElementById("toast");
-
-  toast.textContent=message;
-
-  toast.classList.add("show");
-
-  clearTimeout(toastTimeout);
-
-  toastTimeout=
-    setTimeout(
-      ()=>{
-        toast.classList.remove("show");
-      },
-      2200
-    );
-
-}
+const toast =
+document.getElementById("toast");
 
 
-/* =========================
-   PROFILE
-========================= */
-
-function showProfile(){
-
-  showToast(
-    `👤 ${state.name} • Level ${state.level} • ${state.wins} فوز`
-  );
-
-}
+toast.textContent =
+message;
 
 
-/* =========================
-   REWARDS
-========================= */
+toast.classList.add("show");
 
-function showRewards(){
 
-  showToast(
-    `💎 لديك ${state.gems} جواهر و $${state.cash}`
-  );
+setTimeout(
+()=>{
+toast.classList.remove("show");
+},
+1800
+);
 
 }
 
@@ -1699,58 +2048,77 @@ function showRewards(){
 
 function resetGame(){
 
-  if(!confirm("هل تريد حذف كل تقدم اللعبة؟"))
-    return;
+const ok =
+confirm(
+"هل تريد حذف كل تقدم اللاعب؟"
+);
 
-  localStorage.removeItem(
-    "challengeCash35"
-  );
 
-  location.reload();
+if(!ok){
+
+return;
+
+}
+
+
+try{
+
+localStorage.removeItem(
+"ChallengeCashPRO41"
+);
+
+}catch(error){}
+
+
+location.reload();
 
 }
 
 
 /* =========================
-   LOAD
+   ENTER KEY
 ========================= */
 
-window.addEventListener(
-  "load",
-  ()=>{
+document
+.getElementById("nameInput")
+.addEventListener(
+"keydown",
+function(event){
 
-    if(state.name){
+if(event.key === "Enter"){
 
-      document
-        .getElementById("login")
-        .classList.add("hidden");
+event.preventDefault();
 
-      document
-        .getElementById("gameApp")
-        .classList.remove("hidden");
+startGame();
 
-      updateUI();
+}
 
-      nextChallenge();
-
-    }
-
-    document
-      .getElementById("soundSwitch")
-      .classList.toggle(
-        "on",
-        soundOn
-      );
-
-    document
-      .getElementById("fxSwitch")
-      .classList.toggle(
-        "on",
-        fxOn
-      );
-
-  }
+}
 );
+
+
+/* =========================
+   INITIALIZE
+========================= */
+
+loadGame();
+
+updateUI();
+
+
+/*
+   إذا كان اللاعب مسجل سابقاً
+   نضع اسمه في خانة الدخول
+*/
+
+if(game.name){
+
+document.getElementById(
+"nameInput"
+).value =
+game.name;
+
+}
 
 </script>
 
